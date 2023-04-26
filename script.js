@@ -6,7 +6,6 @@ const API = 'https://random-word-api.herokuapp.com/word?number=1&length=5&lang=e
 fetch(API).then( response => response.json())
 .then(response => {
     palabra = response[0].toUpperCase();
-    console.log(response)
 })
 const button = document.getElementById("guess-button");
 
