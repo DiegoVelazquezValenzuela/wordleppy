@@ -1,8 +1,13 @@
 
 let intento = 6;
-let diccionario = ['APPLE', 'HURLS', 'SEVEN', 'HOUSE'];
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+let diccionario = "response"; 
+const API = 'https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es'
 
+fetch(API).then( response => response.json())
+.then(response => {
+    palabra = response[0].toUpperCase();
+    console.log(response)
+})
 const button = document.getElementById("guess-button");
 
 button.addEventListener(`click` , intentar);
@@ -14,14 +19,16 @@ function leerIntento() {
    }
 
 function intentar () {
+    const GRID = document.getElementById ("grid");
+    const ROW = document.createElement("div");
+    ROW.className= `row`;
+
     const INTENTO = leerIntento();
     if (INTENTO === palabra) {
         terminar(`<h1>"GANASTE!!"</h1>`);
         return
     }
-    const GRID = document.getElementById ("grid");
-    const ROW = document.createElement("div");
-    ROW.className= `row`;
+    
     for (let i in palabra){
         const SPAN = document.createElement(`span`);
         SPAN.className = `letter`;
